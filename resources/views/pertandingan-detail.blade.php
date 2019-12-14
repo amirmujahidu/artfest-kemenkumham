@@ -52,7 +52,11 @@
                   <div class="blog_entry-header-inner">
                     <h2 class="blog_entry-title"> <a href="#" rel="bookmark">{{$pertandingan['title']}}</a> </h2>
                     <h4 style="text-align: left;">0 Votes</h4>
-                    <button>Vote</button>
+                    @if($isVote)
+                      <button type="button" class="btn btn-default" disabled>Anda Sudah Melakukan Vote</button>
+                    @else
+                      <button id="vote" data-pertandingan-id="{{$pertandingan['id']}}">Vote</button>
+                    @endif
                   </div>
                   <!--blog_entry-header-inner--> 
                 </header>
@@ -74,4 +78,30 @@
   <!--main-container--> 
   
 </div>
+@endsection
+
+@section('js')
+  <script type="text/javascript">
+    $(document).ready(function(){
+        $("#vote").on("click", function(){
+          var id_match = $(this).data('pertandingan-id')
+          var id_voter = Date.now()
+
+          get(APIurl+"api/vote?id_match="+id_match+"&id_voter="+id_voter, true, function(response){
+
+            console.log(response)
+          })
+
+          get(APIurl+"api/setCookie?id_voter="+id_voter, true, function(response){
+            
+            console.log(response)
+          })
+
+          setTimeout(function(){ 
+            location.reload(); 
+          }, 1000);
+          
+        });
+    });
+  </script>
 @endsection

@@ -17,6 +17,7 @@
 <link rel="stylesheet" type="text/css" href="{{asset('stylesheet/style.css')}}" media="all">
 <link rel="stylesheet" type="text/css" href="{{asset('stylesheet/responsive.css')}}" media="all">
 <link rel="stylesheet" href="{{asset('font-awesome-4.7.0/css/font-awesome.min.css')}}">
+<link rel="stylesheet" href="{{asset('css/sweetalert/sweetalert2.min.css')}}">
 
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,400,600,700,800' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
@@ -109,8 +110,15 @@
 </div> 
 
 <!-- JavaScript -->
-@yield('js')
-<script type="text/javascript" src="{{asset('js/jquery.min.js')}}"></script>
+<script>
+  <?php 
+    $domain = 'http://'.$_SERVER['HTTP_HOST']; 
+  ?>
+  var APIurl = "{{url('/')}}/";
+  var base_path = "{{url('/')}}";
+</script>
+<!-- <script type="text/javascript" src="{{asset('js/jquery.min.js')}}"></script> -->
+<script src="{{asset('js/jquery/jquery.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/bootstrap.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/parallax.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/revslider.js')}}"></script>
@@ -118,5 +126,10 @@
 <script type="text/javascript" src="{{asset('js/jquery.bxslider.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/owl.carousel.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/jquery.mobile-menu.min.js')}}"></script>
+
+<script type="text/javascript" src="{{asset('js/sweetalert/sweetalert2.all.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/helper/helper.js')}}"></script>
+@yield('js')
+
 </body>
 </html>

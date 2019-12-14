@@ -23,3 +23,9 @@ Route::group(['as'=>'admin.', 'middleware' => 'auth'], function() {
 	Route::get('/admin/dashboard', 'Admin\AdminController@Index')->name('dashboard');
 	Route::resource('admin/streaming', 'Admin\StreamingController');
 });
+
+Route::group(['prefix' => 'api'], function(){
+	Route::get('/checkCookie', 'ApiController@checkCookie');
+	Route::get('/vote', 'ApiController@vote');
+	Route::get('/setCookie', 'ApiController@setCookie');
+});

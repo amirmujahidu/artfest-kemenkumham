@@ -132,3 +132,13 @@
 
   </div>
 @endsection
+
+@section('js')
+  <script type="text/javascript">
+    $(document).ready(function(){
+        get(APIurl+"api/checkCookie", false, function(response){
+          console.log(response);
+        })
+    });
+  </script>
+@endsection

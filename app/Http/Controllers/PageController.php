@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Cookie;
 
 class PageController extends Controller
 {
@@ -11,7 +13,15 @@ class PageController extends Controller
     	$pertandingan = \App\matchModel::whereNotNull('schedule')->get();
     	$headline = \App\matchModel::where('is_headline','1')->get();
     	$matches = \App\matchModel::whereNotNull('link_embed')->orderBy('is_live','desc')->orderBy('id','desc')->take(6)->get();
-    	return view('index',['matches'=>$matches, 'headline'=>$headline, 'schedule'=>$schedule, 'pertandingan'=>$pertandingan]);
+
+        $data = [
+            'matches'=>$matches, 
+            'headline'=>$headline, 
+            'schedule'=>$schedule, 
+            'pertandingan'=>$pertandingan
+        ];
+
+    	return view('index', $data);
     }
 
     public function pertandingan(Request $request){
@@ -33,6 +43,14 @@ class PageController extends Controller
     public function pertandinganDetail($id){
     	$recent = \App\matchModel::whereNotIn('id',[$id])->whereNotNull('link_embed')->orderBy('id','desc')->take(3)->get();
     	$pertandingan = \App\matchModel::where('id',$id)->first();
-    	return view('pertandingan-detail')->with('pertandingan',$pertandingan)->with('recent',$recent);
+
+        $idVoter = Cookie::get('id_voter');
+        if($idVoter != null) $isVote = true;
+        else $isVote = false;
+
+    	return view('pertandingan-detail')
+                ->with('pertandingan',$pertandingan)
+                ->with('recent',$recent)
+                ->with('isVote', $isVote);
     }
 }
