@@ -1,27 +1,36 @@
-/*
-SQLyog Professional v12.4.3 (64 bit)
-MySQL - 10.1.34-MariaDB : Database - artfest
-*********************************************************************
-*/
+-- phpMyAdmin SQL Dump
+-- version 4.8.4
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1:3306
+-- Generation Time: Dec 14, 2019 at 01:59 PM
+-- Server version: 5.7.24
+-- PHP Version: 7.2.14
 
-/*!40101 SET NAMES utf8 */;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
 
-/*!40101 SET SQL_MODE=''*/;
 
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`artfest` /*!40100 DEFAULT CHARACTER SET latin1 */;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-USE `artfest`;
+--
+-- Database: `artfest`
+--
 
-/*Table structure for table `failed_jobs` */
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `failed_jobs`
+--
 
 DROP TABLE IF EXISTS `failed_jobs`;
-
-CREATE TABLE `failed_jobs` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `failed_jobs` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -30,33 +39,14 @@ CREATE TABLE `failed_jobs` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-/*Data for the table `failed_jobs` */
+-- --------------------------------------------------------
 
-/*Table structure for table `match_tags` */
-
-DROP TABLE IF EXISTS `match_tags`;
-
-CREATE TABLE `match_tags` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `match_id` int(11) DEFAULT NULL,
-  `tag_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
-
-/*Data for the table `match_tags` */
-
-insert  into `match_tags`(`id`,`match_id`,`tag_id`) values 
-(1,1,1),
-(2,1,6),
-(3,2,1),
-(4,2,6),
-(5,2,7);
-
-/*Table structure for table `matches` */
+--
+-- Table structure for table `matches`
+--
 
 DROP TABLE IF EXISTS `matches`;
-
-CREATE TABLE `matches` (
+CREATE TABLE IF NOT EXISTS `matches` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) DEFAULT NULL,
   `description` text,
@@ -68,74 +58,115 @@ CREATE TABLE `matches` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
-/*Data for the table `matches` */
+--
+-- Dumping data for table `matches`
+--
 
-insert  into `matches`(`id`,`title`,`description`,`schedule`,`link_embed`,`is_live`,`is_headline`,`tag`) values 
-(1,'Pertandingan Futsal Sekretariat Jenderal vs Direktorat Jenderal Imigrasi',NULL,NULL,'https://www.youtube.com/embed/A_Fihl1YhGk','0','0',1),
-(2,'Pencangan Hari Dharma Karya Dhika','<p>video pencanangan</p>',NULL,'https://www.youtube.com/embed/oJkmWfUnZcM','0','1',2),
-(3,'Olahraga Sepeda \"PASTI Sehat\"',NULL,'2019-10-12 00:00:00',NULL,'0','0',3),
-(4,'Silaturahmi Golf Pengayoman',NULL,'2019-10-13 00:00:00',NULL,'0','0',4),
-(5,'Turnamen Persatuan Tenis Pengayoman (PTP) Cup',NULL,'2019-10-18 00:00:00',NULL,'0','0',8),
-(6,'Turnamen Persatuan Tenis Pengayoman (PTP) Cup',NULL,'2019-10-19 00:00:00',NULL,'0','0',8),
-(7,'Turnamen Persatuan Tenis Pengayoman (PTP) Cup',NULL,'2019-10-20 00:00:00',NULL,'0','0',8),
-(8,'Olahraga Jalan PASTI Sehat',NULL,'2019-10-27 00:00:00',NULL,'0','0',2);
+INSERT INTO `matches` (`id`, `title`, `description`, `schedule`, `link_embed`, `is_live`, `is_headline`, `tag`) VALUES
+(1, 'Pertandingan Futsal Sekretariat Jenderal vs Direktorat Jenderal Imigrasi', NULL, NULL, 'https://www.youtube.com/embed/A_Fihl1YhGk', '0', '0', 1),
+(2, 'Pencangan Hari Dharma Karya Dhika', '<p>video pencanangan</p>', NULL, 'https://www.youtube.com/embed/oJkmWfUnZcM', '0', '1', 2),
+(3, 'Olahraga Sepeda \"PASTI Sehat\"', NULL, '2019-10-11 17:00:00', NULL, '0', '0', 3),
+(4, 'Silaturahmi Golf Pengayoman', NULL, '2019-10-12 17:00:00', NULL, '0', '0', 4),
+(5, 'Turnamen Persatuan Tenis Pengayoman (PTP) Cup', NULL, '2019-10-17 17:00:00', NULL, '0', '0', 8),
+(6, 'Turnamen Persatuan Tenis Pengayoman (PTP) Cup', NULL, '2019-10-18 17:00:00', NULL, '0', '0', 8),
+(7, 'Turnamen Persatuan Tenis Pengayoman (PTP) Cup', NULL, '2019-10-19 17:00:00', NULL, '0', '0', 8),
+(8, 'Olahraga Jalan PASTI Sehat', NULL, '2019-10-26 17:00:00', NULL, '0', '0', 2);
 
-/*Table structure for table `migrations` */
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `match_tags`
+--
+
+DROP TABLE IF EXISTS `match_tags`;
+CREATE TABLE IF NOT EXISTS `match_tags` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `match_id` int(11) DEFAULT NULL,
+  `tag_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `match_tags`
+--
+
+INSERT INTO `match_tags` (`id`, `match_id`, `tag_id`) VALUES
+(1, 1, 1),
+(2, 1, 6),
+(3, 2, 1),
+(4, 2, 6),
+(5, 2, 7);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
+--
 
 DROP TABLE IF EXISTS `migrations`;
-
-CREATE TABLE `migrations` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `migrations` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-/*Data for the table `migrations` */
+--
+-- Dumping data for table `migrations`
+--
 
-insert  into `migrations`(`id`,`migration`,`batch`) values 
-(1,'2014_10_12_000000_create_users_table',1),
-(2,'2014_10_12_100000_create_password_resets_table',1),
-(3,'2019_08_19_000000_create_failed_jobs_table',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(3, '2019_08_19_000000_create_failed_jobs_table', 1);
 
-/*Table structure for table `password_resets` */
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_resets`
+--
 
 DROP TABLE IF EXISTS `password_resets`;
-
-CREATE TABLE `password_resets` (
+CREATE TABLE IF NOT EXISTS `password_resets` (
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   KEY `password_resets_email_index` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-/*Data for the table `password_resets` */
+-- --------------------------------------------------------
 
-/*Table structure for table `tags` */
+--
+-- Table structure for table `tags`
+--
 
 DROP TABLE IF EXISTS `tags`;
-
-CREATE TABLE `tags` (
+CREATE TABLE IF NOT EXISTS `tags` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tag` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
-/*Data for the table `tags` */
+--
+-- Dumping data for table `tags`
+--
 
-insert  into `tags`(`id`,`tag`) values 
-(1,'Sepeda'),
-(2,'Golf'),
-(3,'Tennis'),
-(4,'Jalan'),
-(8,'other');
+INSERT INTO `tags` (`id`, `tag`) VALUES
+(1, 'Sepeda'),
+(2, 'Golf'),
+(3, 'Tennis'),
+(4, 'Jalan'),
+(8, 'other');
 
-/*Table structure for table `users` */
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
 
 DROP TABLE IF EXISTS `users`;
-
-CREATE TABLE `users` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
@@ -147,26 +178,39 @@ CREATE TABLE `users` (
   UNIQUE KEY `users_email_unique` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-/*Data for the table `users` */
+--
+-- Dumping data for table `users`
+--
 
-insert  into `users`(`id`,`name`,`email`,`email_verified_at`,`password`,`remember_token`,`created_at`,`updated_at`) values 
-(1,'admin','admin',NULL,'$2y$10$9hjYqx/cN7WiRv4MIe83HOy/cRP2gu90Kb.xtf338YXT0O44FTVKS','8GjoCxCFdkDOtptqspNXkZsTJ5606xLUTh5UYghscg2beLmHfLgzxwB0tpqg',NULL,NULL);
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'admin', NULL, '$2y$10$9hjYqx/cN7WiRv4MIe83HOy/cRP2gu90Kb.xtf338YXT0O44FTVKS', '8GjoCxCFdkDOtptqspNXkZsTJ5606xLUTh5UYghscg2beLmHfLgzxwB0tpqg', NULL, NULL);
 
-/*Table structure for table `votes` */
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `votes`
+--
 
 DROP TABLE IF EXISTS `votes`;
-
-CREATE TABLE `votes` (
+CREATE TABLE IF NOT EXISTS `votes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_match` int(11) NOT NULL,
   `cookie` varchar(32) NOT NULL,
   `ip_address` varchar(32) NOT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
-/*Data for the table `votes` */
+--
+-- Dumping data for table `votes`
+--
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+INSERT INTO `votes` (`id`, `id_match`, `cookie`, `ip_address`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, '1576331886243', '::1', '2019-12-14 13:58:06', '2019-12-14 13:58:06', NULL);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
